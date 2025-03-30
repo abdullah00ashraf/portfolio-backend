@@ -24,3 +24,8 @@ This document tracks verified architectural iterations, feature additions, and p
 - **Status**: Verified & Integrated into `main`
 - **Timestamp**: `2025-03-15T11:53:16+0530`
 
+### [2025-03-30 21:05 IST] - `feat(security): enforce strict CORS whitelist and rate-limiting headers`
+- **Component**: Django Unfold & Media Gateway
+- **Status**: Verified & Integrated into `main`
+- **Timestamp**: `2025-03-30T21:05:12+0530`
+
