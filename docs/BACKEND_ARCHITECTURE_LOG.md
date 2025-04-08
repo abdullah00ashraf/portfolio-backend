@@ -29,3 +29,8 @@ This document tracks verified architectural iterations, feature additions, and p
 - **Status**: Verified & Integrated into `main`
 - **Timestamp**: `2025-03-30T21:05:12+0530`
 
+### [2025-04-08 19:14 IST] - `perf(cache): implement Redis caching layer for public portfolio views`
+- **Component**: Django Unfold & Media Gateway
+- **Status**: Verified & Integrated into `main`
+- **Timestamp**: `2025-04-08T19:14:53+0530`
+
