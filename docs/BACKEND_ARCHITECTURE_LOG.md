@@ -44,3 +44,8 @@ This document tracks verified architectural iterations, feature additions, and p
 - **Status**: Verified & Integrated into `main`
 - **Timestamp**: `2025-04-21T18:01:19+0530`
 
+### [2025-04-22 16:56 IST] - `fix(mime): validate file magic numbers before processing asset uploads`
+- **Component**: Django Unfold & Media Gateway
+- **Status**: Verified & Integrated into `main`
+- **Timestamp**: `2025-04-22T16:56:48+0530`
+
