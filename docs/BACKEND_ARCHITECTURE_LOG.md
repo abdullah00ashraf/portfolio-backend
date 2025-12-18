@@ -219,3 +219,8 @@ This document tracks verified architectural iterations, feature additions, and p
 - **Status**: Verified & Integrated into `main`
 - **Timestamp**: `2025-12-01T15:09:22+0530`
 
+### [2025-12-18 19:37 IST] - `refactor(auth): implement rotating JWT access and refresh token handlers`
+- **Component**: Django Unfold & Media Gateway
+- **Status**: Verified & Integrated into `main`
+- **Timestamp**: `2025-12-18T19:37:45+0530`
+
