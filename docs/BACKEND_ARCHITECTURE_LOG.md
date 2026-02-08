@@ -244,3 +244,8 @@ This document tracks verified architectural iterations, feature additions, and p
 - **Status**: Verified & Integrated into `main`
 - **Timestamp**: `2026-01-26T10:48:03+0530`
 
+### [2026-02-08 09:10 IST] - `fix(storage): add exponential backoff retry for Google Drive API adapter`
+- **Component**: Django Unfold & Media Gateway
+- **Status**: Verified & Integrated into `main`
+- **Timestamp**: `2026-02-08T09:10:57+0530`
+
