@@ -1,0 +1,31 @@
+<div class="bg-[#111111] border border-zinc-900 p-5 flex flex-col justify-between transition-all duration-300 hover:border-zinc-700 rounded-none">
+    <div>
+        <div class="flex justify-between items-center mb-3">
+            <span class="text-[9px] font-mono tracking-wider {% if metric.category == 'QUANTUM' %}text-sky-400{% elif metric.category == 'SECURITY' %}text-red-400{% else %}text-amber-500{% endif %} uppercase">
+                {% if metric.category == 'WEB_EDGE' %}
+                    // WEB & EDGE INFRA
+                {% elif metric.category == 'AI_CORE' %}
+                    // AI & DATA MATRICES
+                {% elif metric.category == 'QUANTUM' %}
+                    // QUANTUM ENGINEERING
+                {% elif metric.category == 'SECURITY' %}
+                    // SYSTEMS SECURITY
+                {% endif %}
+            </span>
+            <span class="text-[9px] font-mono text-zinc-600">NODE_0{{ metric.order }}</span>
+        </div>
+        
+        <h4 class="text-base font-mono font-bold text-zinc-100 tracking-tight">
+            {{ metric.technology_name }}
+        </h4>
+        
+        <p class="text-xs text-zinc-400 font-sans mt-3 leading-relaxed text-justify">
+            {{ metric.verified_use_cases }}
+        </p>
+    </div>
+
+    <div class="mt-4 pt-3 border-t border-zinc-950 flex justify-between items-center text-[10px] font-mono text-zinc-600">
+        <span>STATE: VERIFIED</span>
+        <span class="text-emerald-500/80">✔ IN PRODUCTION</span>
+    </div>
+</div>

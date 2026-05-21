@@ -1,0 +1,216 @@
+<section id="knowledge-vault" class="w-full bg-[#0A0A0A] border-t border-zinc-900 py-24 px-8 relative overflow-hidden">
+    <!-- Cyberpunk grid background element -->
+    <div class="absolute inset-0 ap-obsidian-grid opacity-20 pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Header -->
+        <div class="mb-16 border-b border-zinc-900 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse shadow-[0_0_8px_#8b5cf6]"></span>
+                    <h2 class="text-xs font-mono tracking-[0.3em] text-violet-400 uppercase">// SECTION 08 // SECURE KNOWLEDGE VAULT</h2>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-zinc-100 tracking-tighter uppercase font-mono">
+                    System Credentials & R&D Sandbox
+                </h3>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-[10px] font-mono text-zinc-500">// SOURCE: DUAL-PIPELINE (DRIVE + LOCAL)</span>
+                <!-- High-tech state indicator -->
+                <div class="px-3 py-1 bg-violet-950/30 border border-violet-500/20 text-violet-400 font-mono text-[9px] uppercase tracking-wider">
+                    Ledger Status: Verified
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Tab Controls -->
+        <div class="flex gap-4 border-b border-zinc-900 mb-12 pb-1 text-sm font-mono">
+            <button onclick="switchVaultTab('certs')" id="tab-btn-certs" class="px-6 py-3 text-violet-400 border-b-2 border-violet-500 transition-all font-bold uppercase tracking-wider flex items-center gap-2">
+                <span>01 // Academic & Certs</span>
+                <span class="bg-violet-900/40 text-violet-300 text-[10px] px-2 py-0.5 border border-violet-700/30 rounded-sm">{{ certificates|length }}</span>
+            </button>
+            <button onclick="switchVaultTab('learning')" id="tab-btn-learning" class="px-6 py-3 text-zinc-500 border-b-2 border-transparent hover:text-zinc-300 transition-all uppercase tracking-wider flex items-center gap-2">
+                <span>02 // R&D Sandbox</span>
+                <span class="bg-zinc-900/40 text-zinc-400 text-[10px] px-2 py-0.5 border border-zinc-700/30 rounded-sm">{{ learning_modules|length }}</span>
+            </button>
+        </div>
+
+        <!-- TAB 1: CERTIFICATES -->
+        <div id="vault-pane-certs" class="space-y-6 transition-all duration-300">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {% for cert in certificates %}
+                <div class="ap-obsidian-card p-6 flex flex-col justify-between group hover:border-violet-500/30 transition-all duration-500">
+                    <div>
+                        <!-- Header with classification & secure date -->
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-[9px] font-mono tracking-widest text-violet-400 uppercase bg-violet-950/30 px-2.5 py-1 border border-violet-500/10">
+                                // {{ cert.metadata.classification|default:"CERTIFICATION" }}
+                            </span>
+                            <span class="text-[9px] font-mono text-zinc-600">
+                                SECURED: {{ cert.metadata.issued_date|default:"—"|upper }}
+                            </span>
+                        </div>
+
+                        <h4 class="text-lg font-mono font-bold text-zinc-100 uppercase tracking-tight mb-2 group-hover:text-violet-400 transition-colors">
+                            {{ cert.title }}
+                        </h4>
+                        
+                        <div class="space-y-2 mb-6">
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-zinc-500">ISSUER:</span>
+                                <span class="text-zinc-300 text-right">{{ cert.metadata.issuer|default:"—" }}</span>
+                            </div>
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-zinc-500">STORAGE:</span>
+                                <span class="{% if cert.storage_provider == 'LOCAL_DISK' %}text-emerald-400{% else %}text-amber-400{% endif %}">
+                                    {{ cert.get_storage_provider_display }}
+                                </span>
+                            </div>
+                            {% if cert.metadata.verification_method %}
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-zinc-500">VERIFY:</span>
+                                <span class="text-zinc-500 text-[10px]">{{ cert.metadata.verification_method }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="pt-4 border-t border-zinc-950/50 flex items-center justify-between gap-4">
+                        <span class="text-[9px] font-mono text-zinc-600">// VAULT_ID: {{ cert.id|stringformat:"03d" }}</span>
+                        
+                        <a href="/vault/asset/{{ cert.id }}/" target="_blank" 
+                           class="flex items-center gap-2 text-xs font-mono text-violet-400 hover:text-violet-300 border border-violet-500/20 bg-violet-500/5 px-4 py-2 hover:bg-violet-500/10 transition-all rounded-sm uppercase tracking-wider group/btn">
+                            <span>Fetch Vault Source</span>
+                            <span class="group-hover/btn:translate-x-0.5 transition-transform">↗</span>
+                        </a>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full border border-zinc-900 bg-[#111111] p-12 text-center">
+                    <p class="font-mono text-xs text-zinc-500">// SYSTEM LOG: NO CRYPTOGRAPHIC CREDENTIALS RECORDED IN THIS SECTOR</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- TAB 2: LEARNING MODULES -->
+        <div id="vault-pane-learning" class="hidden space-y-8 transition-all duration-300">
+            {% for module in learning_modules %}
+            <div class="border border-zinc-900 bg-[#111111] p-8 relative overflow-hidden group hover:border-violet-500/20 transition-all duration-500">
+                <!-- Glowing corner accent -->
+                <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-violet-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-zinc-950 pb-6 mb-6">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[9px] font-mono text-amber-500 bg-amber-500/5 px-2 py-0.5 border border-amber-500/10 uppercase">
+                                // {{ module.metadata.platform|default:"R&D BLUEPRINT" }}
+                            </span>
+                            <span class="text-[9px] font-mono text-zinc-500">
+                                SOURCE: {{ module.get_storage_provider_display }}
+                            </span>
+                        </div>
+                        <h4 class="text-2xl font-extrabold font-mono text-zinc-100 uppercase tracking-tight group-hover:text-violet-400 transition-colors">
+                            {{ module.title }}
+                        </h4>
+                    </div>
+
+                    <a href="/vault/asset/{{ module.id }}/" target="_blank" 
+                       class="shrink-0 flex items-center gap-2 text-xs font-mono text-violet-400 hover:text-violet-300 border border-violet-500/20 bg-violet-500/5 px-5 py-2.5 hover:bg-violet-500/10 transition-all rounded-sm uppercase tracking-wider">
+                        <span>Fetch R&D Asset Archive</span>
+                        <span>📥</span>
+                    </a>
+                </div>
+
+                <!-- Structured Cyberpunk Parameters Ingestion Columns -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 font-sans text-sm text-zinc-400">
+                    
+                    <div class="space-y-6">
+                        {% if module.metadata.core_concept_approaches %}
+                        <div class="bg-[#070707] border border-zinc-950 p-5 rounded-sm hover:border-zinc-800 transition-colors">
+                            <span class="text-xs font-mono text-violet-400 tracking-wider block mb-2">// 01. CORE CONCEPT APPROACHES</span>
+                            <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed text-xs">{{ module.metadata.core_concept_approaches }}</p>
+                        </div>
+                        {% endif %}
+                        
+                        {% if module.metadata.key_parameters %}
+                        <div class="bg-[#070707] border border-zinc-950 p-5 rounded-sm hover:border-zinc-800 transition-colors">
+                            <span class="text-xs font-mono text-violet-400 tracking-wider block mb-2">// 02. PARAMETERS TO MONITOR</span>
+                            <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed text-xs">{{ module.metadata.key_parameters }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if module.metadata.implementation_mvp_steps %}
+                        <div class="bg-[#070707] border border-zinc-950 p-5 rounded-sm hover:border-zinc-800 transition-colors">
+                            <span class="text-xs font-mono text-violet-400 tracking-wider block mb-2">// 05. DEVELOPMENT MVP MATRIX</span>
+                            <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed text-xs">{{ module.metadata.implementation_mvp_steps }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="space-y-6">
+                        {% if module.metadata.ml_architectures %}
+                        <div class="bg-[#070707] border border-zinc-950 p-5 rounded-sm hover:border-zinc-800 transition-colors">
+                            <span class="text-xs font-mono text-violet-400 tracking-wider block mb-2">// 03. MODEL ARCHITECTURES</span>
+                            <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed text-xs">{{ module.metadata.ml_architectures }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if module.metadata.system_architecture_layers %}
+                        <div class="bg-[#070707] border border-zinc-950 p-5 rounded-sm hover:border-zinc-800 transition-colors">
+                            <span class="text-xs font-mono text-violet-400 tracking-wider block mb-2">// 04. SYSTEM END-TO-END PIPELINE</span>
+                            <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed text-xs">{{ module.metadata.system_architecture_layers }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if module.metadata.advanced_features %}
+                        <div class="bg-[#070707] border border-zinc-950 p-5 border-l-2 border-l-violet-500/30 rounded-sm hover:border-zinc-800 transition-colors">
+                            <span class="text-xs font-mono text-violet-400 tracking-wider block mb-2">// 06. SYSTEM ENHANCEMENTS</span>
+                            <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed text-xs">{{ module.metadata.advanced_features }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+            {% empty %}
+            <div class="border border-zinc-900 bg-[#111111] p-12 text-center">
+                <p class="font-mono text-xs text-zinc-500">// SYSTEM LOG: NO ACTIVE R&D SIMULATION BLUEPRINTS REGISTERED ON THIS NODE</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Frontend dynamic switching script for vault -->
+<script>
+    function switchVaultTab(tab) {
+        const certsTab = document.getElementById('tab-btn-certs');
+        const learningTab = document.getElementById('tab-btn-learning');
+        const certsPane = document.getElementById('vault-pane-certs');
+        const learningPane = document.getElementById('vault-pane-learning');
+        
+        if (tab === 'certs') {
+            // Select certs
+            certsTab.classList.add('text-violet-400', 'border-violet-500');
+            certsTab.classList.remove('text-zinc-500', 'border-transparent');
+            
+            learningTab.classList.add('text-zinc-500', 'border-transparent');
+            learningTab.classList.remove('text-violet-400', 'border-violet-500');
+            
+            certsPane.classList.remove('hidden');
+            learningPane.classList.add('hidden');
+        } else {
+            // Select learning
+            learningTab.classList.add('text-violet-400', 'border-violet-500');
+            learningTab.classList.remove('text-zinc-500', 'border-transparent');
+            
+            certsTab.classList.add('text-zinc-500', 'border-transparent');
+            certsTab.classList.remove('text-violet-400', 'border-violet-500');
+            
+            learningPane.classList.remove('hidden');
+            certsPane.classList.add('hidden');
+        }
+    }
+</script>

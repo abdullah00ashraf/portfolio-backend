@@ -1,0 +1,46 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Research | {{ profile.name }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen">
+    <!-- Hero Section -->
+    <section data-nasa-bg class="leica-section min-h-screen flex flex-col items-center justify-center text-center px-10">
+        <h1 class="text-6xl md:text-9xl font-800 tracking-tighter uppercase mb-10 leading-none">Research.</h1>
+        <p class="text-xs md:text-sm uppercase tracking-[0.6em] text-white/60 mb-10">Active Labs & Global Collaborations</p>
+        <div class="w-12 h-px bg-leica-red"></div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section data-nasa-bg class="leica-section min-h-screen py-32 px-10 lg:px-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {% for project in projects %}
+                <div class="bg-midnight/30 backdrop-blur-xl p-12 md:p-20 border border-white/5 group hover:border-leica-red/50 transition-all duration-700">
+                    <div class="flex justify-between items-start mb-10">
+                        <span class="text-[10px] font-bold text-leica-red uppercase tracking-[0.4em]">{{ project.status }}</span>
+                        <div class="h-px w-12 bg-white/10 mt-2"></div>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-800 tracking-tighter uppercase mb-8 group-hover:text-leica-red transition-colors duration-500">{{ project.project_title }}</h2>
+                    <div class="text-white/60 text-lg font-light leading-relaxed mb-12 prose prose-invert">
+                        {{ project.description|safe }}
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-8 md:gap-20">
+                        <div>
+                            <span class="text-[9px] uppercase tracking-[0.3em] text-white/40 block mb-2">Agency</span>
+                            <span class="text-sm font-bold text-white uppercase tracking-widest">{{ project.funding_agency }}</span>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase tracking-[0.3em] text-white/40 block mb-2">Duration</span>
+                            <span class="text-sm font-bold text-white uppercase tracking-widest">{{ project.duration }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-span-full py-40 text-center border border-white/5">
+                    <p class="font-serif italic text-white/30 text-2xl uppercase tracking-widest">No active research records found.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Biography | {{ profile.name }}{% endblock %}
+
+{% block content %}
+<div class="relative min-h-screen">
+    <!-- Internal Navigation Sidebar (Festing Style) -->
+    <nav class="fixed left-10 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col space-y-8 border-l border-white/10 pl-6">
+        <a href="#prologue" class="text-[9px] uppercase tracking-[0.4em] text-white/40 hover:text-leica-red transition-all hover:pl-2">Prologue</a>
+        <a href="#narrative" class="text-[9px] uppercase tracking-[0.4em] text-white/40 hover:text-leica-red transition-all hover:pl-2">Narrative</a>
+        <a href="#focus" class="text-[9px] uppercase tracking-[0.4em] text-white/40 hover:text-leica-red transition-all hover:pl-2">Focus</a>
+        <a href="#legacy" class="text-[9px] uppercase tracking-[0.4em] text-white/40 hover:text-leica-red transition-all hover:pl-2">Legacy</a>
+    </nav>
+
+    <!-- Section: Prologue (Hero) -->
+    <section id="prologue" data-nasa-bg class="leica-section min-h-screen flex items-center justify-center px-10 lg:px-40">
+        <div class="max-w-5xl text-center">
+            <h1 class="text-5xl md:text-8xl font-800 tracking-tighter uppercase mb-12">The Narrative.</h1>
+            <div class="h-1 w-20 bg-leica-red mx-auto mb-12"></div>
+            <p class="text-xl md:text-3xl font-light italic text-white/90 leading-relaxed">
+                "Research is not just a profession; it is a pursuit of precision in understanding the unknown."
+            </p>
+        </div>
+    </section>
+
+    <!-- Section: Narrative -->
+    <section id="narrative" data-nasa-bg class="leica-section min-h-screen py-40 px-10 lg:px-40">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+            <div class="space-y-12">
+                <h2 class="text-4xl md:text-6xl font-800 tracking-tighter uppercase">Early Career.</h2>
+                <div class="text-white/70 text-lg md:text-xl font-light leading-loose space-y-8">
+                    {{ profile.bio|safe }}
+                </div>
+            </div>
+            <div class="relative pt-20">
+                <div class="bg-midnight/50 backdrop-blur-xl p-12 border border-white/10 shadow-2xl">
+                    <h3 class="text-leica-red text-[10px] uppercase tracking-[0.4em] font-bold mb-8">Academic Milestone</h3>
+                    <p class="text-white/80 font-light italic leading-relaxed text-lg">
+                        Recognized for pioneering contributions to the field of academic portal development and interdisciplinary research architecture.
+                    </p>
+                    <div class="mt-10 flex gap-4">
+                        <span class="text-3xl font-800 text-white/20">2026</span>
+                        <div class="h-px flex-grow bg-white/10 mt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Current Focus -->
+    <section id="focus" data-nasa-bg class="leica-section min-h-screen flex items-center justify-center px-10 lg:px-40 text-center">
+        <div class="bg-midnight/40 backdrop-blur-md p-16 md:p-32 border border-white/5 max-w-4xl">
+            <h2 class="text-4xl md:text-6xl font-800 tracking-tighter uppercase mb-12">Current Focus.</h2>
+            <p class="text-lg md:text-xl text-white/60 font-light leading-relaxed mb-12">
+                Exploring the intersection of luxury UI/UX and academic information architecture to redefine how scholarship is presented globally.
+            </p>
+            <div class="flex justify-center gap-10">
+                <div class="text-center">
+                    <span class="block text-4xl font-800 text-leica-red mb-2">15+</span>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-white/40">Active Labs</span>
+                </div>
+                <div class="text-center">
+                    <span class="block text-4xl font-800 text-leica-red mb-2">200+</span>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-white/40">Citations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Scroll to Top Script -->
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+{% endblock %}

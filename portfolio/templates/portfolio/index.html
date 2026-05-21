@@ -1,0 +1,656 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="prologue" class="overflow-hidden">
+    <!-- Premium Systems Identity Hero Section -->
+    {% include 'components/hero_identity.html' %}
+
+    {% for section in sections %}
+        {% if section.name == 'about' %}
+            <!-- Skip academic about narrative -->
+
+        {% elif section.name == 'publications' and profile.is_academic_visible %}
+            <!-- Archive section removed from active feed -->
+
+        {% elif section.name == 'teaching' and profile.is_education_visible %}
+            <!-- Interactive WebGL Programming & Prototyping Section -->
+            <section id="pedagogy" class="leica-section relative min-h-screen flex flex-col justify-between py-24 px-6 md:px-16 transition-all duration-1000 overflow-hidden bg-[#0A0A0A] font-mono border-b border-white/5 select-none">
+                <style>
+                    .subsys-card {
+                        background-color: #111111;
+                        border: 1px solid #333333;
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                        transform: translateY(0);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                    }
+                    .subsys-card:hover {
+                        transform: translateY(-6px);
+                        background-color: #151515;
+                    }
+                    .subsys-card.glow-red:hover {
+                        border-color: #cc0000;
+                        box-shadow: 0 0 15px rgba(204, 0, 0, 0.2);
+                    }
+                    .subsys-card.glow-green:hover {
+                        border-color: #00ff41;
+                        box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+                    }
+                </style>
+
+                <!-- Interactive WebGL Canvas Background -->
+                <canvas id="prototyping-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+                
+                <!-- Foreground HUD layout (relative z-10) -->
+                <!-- Top Header Row -->
+                <div class="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10 mb-16 fade-in-on-scroll">
+                    <div class="flex items-center gap-4">
+                        <!-- Glowing red status dot -->
+                        <span class="w-3.5 h-3.5 rounded-full bg-[#cc0000] shadow-[0_0_10px_#cc0000,_0_0_20px_rgba(204,0,0,0.6)] animate-pulse flex-shrink-0"></span>
+                        <h2 class="text-2xl md:text-4xl font-extrabold tracking-widest uppercase text-white leading-none">
+                            // PROGRAMMING & PROTOTYPING
+                        </h2>
+                    </div>
+                    
+                    <!-- Controller trigger -->
+                    <button id="recompile-btn" class="border border-white/20 hover:border-leica-red bg-black/60 backdrop-blur-sm px-8 py-3.5 text-[11px] tracking-[0.25em] font-bold text-white hover:text-leica-red transition-all uppercase rounded-none relative z-10 flex items-center gap-3 group active:scale-95">
+                        <span>RECOMPILE ENVIRONMENT</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-leica-red group-hover:scale-125 transition-transform"></span>
+                    </button>
+                </div>
+
+                <!-- Massive Cohesive 10-Sub-System CSS Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mx-auto relative z-10 mb-16 fade-in-on-scroll">
+                    
+                    <!-- Card 01 -->
+                    <div class="subsys-card glow-green p-6 min-h-[260px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold tracking-[0.25em] text-[#888] font-mono uppercase">// SUB-SYS: 01</span>
+                                <span class="text-[9px] px-2 py-0.5 border border-[#00ff41]/30 text-[#00ff41] font-mono font-bold tracking-wider">[ ONLINE ]</span>
+                            </div>
+                            <h3 class="text-sm font-bold tracking-[0.1em] text-white uppercase mb-3 font-mono">Hydro-Kinetic Mesh Emulator</h3>
+                            <p class="text-xs text-[#a0a0a0] leading-relaxed font-sans font-light">A live-physics sandbox for mapping fluid dynamics across municipal grids. Inject procedural water flow vectors to stress-test structural integrity and overflow thresholds of virtual flood defense barriers in real-time.</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-[#222] flex justify-between text-[9px] text-[#888] font-mono tracking-wider uppercase">
+                            <span>LATENCY: <span class="telemetry-val" data-min="8" data-max="15">12</span>ms</span>
+                            <span>FPS: <span class="telemetry-val" data-min="58" data-max="60">60</span>.0</span>
+                            <span>NODES: <span class="telemetry-val" data-min="1024" data-max="3000">2048</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 02 -->
+                    <div class="subsys-card glow-red p-6 min-h-[260px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold tracking-[0.25em] text-[#888] font-mono uppercase">// SUB-SYS: 02</span>
+                                <span class="text-[9px] px-2 py-0.5 border border-[#00ff41]/30 text-[#00ff41] font-mono font-bold tracking-wider">[ COMPILING ]</span>
+                            </div>
+                            <h3 class="text-sm font-bold tracking-[0.1em] text-white uppercase mb-3 font-mono">Spectral Toxicity Parser</h3>
+                            <p class="text-xs text-[#a0a0a0] leading-relaxed font-sans font-light">An asynchronous pipeline simulating the ingestion of raw, multi-spectral orbital data. Prototyping machine learning models to isolate and highlight aquatic pollution nodes (heavy metal dispersion) as glowing hazard zones.</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-[#222] flex justify-between text-[9px] text-[#888] font-mono tracking-wider uppercase">
+                            <span>LATENCY: <span class="telemetry-val" data-min="6" data-max="12">8</span>ms</span>
+                            <span>FPS: <span class="telemetry-val" data-min="59" data-max="60">60</span>.0</span>
+                            <span>NODES: <span class="telemetry-val" data-min="512" data-max="1500">1024</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 03 -->
+                    <div class="subsys-card glow-green p-6 min-h-[260px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold tracking-[0.25em] text-[#888] font-mono uppercase">// SUB-SYS: 03</span>
+                                <span class="text-[9px] px-2 py-0.5 border border-[#00ff41]/30 text-[#00ff41] font-mono font-bold tracking-wider">[ STABLE ]</span>
+                            </div>
+                            <h3 class="text-sm font-bold tracking-[0.1em] text-white uppercase mb-3 font-mono">Generative Algorithm Node Canvas</h3>
+                            <p class="text-xs text-[#a0a0a0] leading-relaxed font-sans font-light">A zero-gravity visual execution environment. Drop raw code snippets into the grid, link them visually, and watch the byte-stream execute while measuring frame delta-time and execution latency dynamically.</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-[#222] flex justify-between text-[9px] text-[#888] font-mono tracking-wider uppercase">
+                            <span>LATENCY: <span class="telemetry-val" data-min="10" data-max="18">14</span>ms</span>
+                            <span>FPS: <span class="telemetry-val" data-min="57" data-max="60">59</span>.8</span>
+                            <span>NODES: <span class="telemetry-val" data-min="256" data-max="1024">512</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 04 -->
+                    <div class="subsys-card glow-red p-6 min-h-[260px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold tracking-[0.25em] text-[#888] font-mono uppercase">// SUB-SYS: 04</span>
+                                <span class="text-[9px] px-2 py-0.5 border border-[#00ff41]/30 text-[#00ff41] font-mono font-bold tracking-wider">[ ONLINE ]</span>
+                            </div>
+                            <h3 class="text-sm font-bold tracking-[0.1em] text-white uppercase mb-3 font-mono">Kinematic UI Stress-Tester</h3>
+                            <p class="text-xs text-[#a0a0a0] leading-relaxed font-sans font-light">A sub-system dedicated to testing the physics of high-end, luxury interfaces. Prototype micro-interactions, magnetic buttons, and scroll-warping using WebGL, ensuring locked 60fps under heavy DOM loads.</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-[#222] flex justify-between text-[9px] text-[#888] font-mono tracking-wider uppercase">
+                            <span>LATENCY: <span class="telemetry-val" data-min="4" data-max="10">6</span>ms</span>
+                            <span>FPS: <span class="telemetry-val" data-min="59" data-max="60">60</span>.0</span>
+                            <span>NODES: <span class="telemetry-val" data-min="2048" data-max="8192">4096</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 05 -->
+                    <div class="subsys-card glow-green p-6 min-h-[260px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold tracking-[0.25em] text-[#888] font-mono uppercase">// SUB-SYS: 05</span>
+                                <span class="text-[9px] px-2 py-0.5 border border-[#00ff41]/30 text-[#00ff41] font-mono font-bold tracking-wider">[ STABLE ]</span>
+                            </div>
+                            <h3 class="text-sm font-bold tracking-[0.1em] text-white uppercase mb-3 font-mono">Swarm Evacuation Dynamics</h3>
+                            <p class="text-xs text-[#a0a0a0] leading-relaxed font-sans font-light">A particle-based crowd simulator for humanitarian infrastructure planning. Map out a localized urban grid and run AI-driven agent simulations to find evacuation bottlenecks and optimal relief routing.</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-[#222] flex justify-between text-[9px] text-[#888] font-mono tracking-wider uppercase">
+                            <span>LATENCY: <span class="telemetry-val" data-min="8" data-max="15">11</span>ms</span>
+                            <span>FPS: <span class="telemetry-val" data-min="58" data-max="60">60</span>.0</span>
+                            <span>NODES: <span class="telemetry-val" data-min="100" data-max="500">256</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 06 -->
+                    <div class="subsys-card glow-red p-6 min-h-[260px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold tracking-[0.25em] text-[#888] font-mono uppercase">// SUB-SYS: 06</span>
+                                <span class="text-[9px] px-2 py-0.5 border border-[#00ff41]/30 text-[#00ff41] font-mono font-bold tracking-wider">[ COMPILING ]</span>
+                            </div>
+                            <h3 class="text-sm font-bold tracking-[0.1em] text-white uppercase mb-3 font-mono">Neural Weight Topography</h3>
+                            <p class="text-xs text-[#a0a0a0] leading-relaxed font-sans font-light">A 3D hardware-accelerated matrix visually representing the training state of an AI/ML model. As the model learns, the grid dynamically shifts, creating a real-time topographical map of loss functions and gradient descents.</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-[#222] flex justify-between text-[9px] text-[#888] font-mono tracking-wider uppercase">
+                            <span>LATENCY: <span class="telemetry-val" data-min="12" data-max="20">15</span>ms</span>
+                            <span>FPS: <span class="telemetry-val" data-min="56" data-max="60">59</span>.5</span>
+                            <span>NODES: <span class="telemetry-val" data-min="8192" data-max="32768">16384</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 07 -->
+                    <div class="subsys-card glow-green p-6 min-h-[260px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold tracking-[0.25em] text-[#888] font-mono uppercase">// SUB-SYS: 07</span>
+                                <span class="text-[9px] px-2 py-0.5 border border-[#00ff41]/30 text-[#00ff41] font-mono font-bold tracking-wider">[ ONLINE ]</span>
+                            </div>
+                            <h3 class="text-sm font-bold tracking-[0.1em] text-white uppercase mb-3 font-mono">IoT Sensor Array Spoofer</h3>
+                            <p class="text-xs text-[#a0a0a0] leading-relaxed font-sans font-light">A backend prototyping tool simulating a massive network of environmental sensors broadcasting telemetry. Stress-tests server architecture's ability to handle massive asynchronous data pipelines before physical deployment.</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-[#222] flex justify-between text-[9px] text-[#888] font-mono tracking-wider uppercase">
+                            <span>LATENCY: <span class="telemetry-val" data-min="6" data-max="14">9</span>ms</span>
+                            <span>FPS: <span class="telemetry-val" data-min="58" data-max="60">60</span>.0</span>
+                            <span>NODES: <span class="telemetry-val" data-min="4096" data-max="16384">8192</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 08 -->
+                    <div class="subsys-card glow-red p-6 min-h-[260px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold tracking-[0.25em] text-[#888] font-mono uppercase">// SUB-SYS: 08</span>
+                                <span class="text-[9px] px-2 py-0.5 border border-[#00ff41]/30 text-[#00ff41] font-mono font-bold tracking-wider">[ STABLE ]</span>
+                            </div>
+                            <h3 class="text-sm font-bold tracking-[0.1em] text-white uppercase mb-3 font-mono">Decentralized Resource Ledger</h3>
+                            <p class="text-xs text-[#a0a0a0] leading-relaxed font-sans font-light">A visual network simulator mapping the distribution of humanitarian aid. Uses procedural byte-stream parsing to track supply chain drops, calculating the most efficient vector paths to isolated grid sectors.</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-[#222] flex justify-between text-[9px] text-[#888] font-mono tracking-wider uppercase">
+                            <span>LATENCY: <span class="telemetry-val" data-min="10" data-max="16">13</span>ms</span>
+                            <span>FPS: <span class="telemetry-val" data-min="58" data-max="60">60</span>.0</span>
+                            <span>NODES: <span class="telemetry-val" data-min="512" data-max="2048">1024</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 09 -->
+                    <div class="subsys-card glow-green p-6 min-h-[260px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold tracking-[0.25em] text-[#888] font-mono uppercase">// SUB-SYS: 09</span>
+                                <span class="text-[9px] px-2 py-0.5 border border-[#00ff41]/30 text-[#00ff41] font-mono font-bold tracking-wider">[ ONLINE ]</span>
+                            </div>
+                            <h3 class="text-sm font-bold tracking-[0.1em] text-white uppercase mb-3 font-mono">Audio-Spatial Frequency Mapper</h3>
+                            <p class="text-xs text-[#a0a0a0] leading-relaxed font-sans font-light">A real-time audio analysis prototype. Captures system audio and converts frequencies into physical forces within the simulator, pushing and pulling grid nodes to visualize sound waves and latency.</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-[#222] flex justify-between text-[9px] text-[#888] font-mono tracking-wider uppercase">
+                            <span>LATENCY: <span class="telemetry-val" data-min="4" data-max="10">7</span>ms</span>
+                            <span>FPS: <span class="telemetry-val" data-min="59" data-max="60">60</span>.0</span>
+                            <span>NODES: <span class="telemetry-val" data-min="1024" data-max="4096">2048</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 10 -->
+                    <div class="subsys-card glow-red p-6 min-h-[260px]">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-bold tracking-[0.25em] text-[#888] font-mono uppercase">// SUB-SYS: 10</span>
+                                <span class="text-[9px] px-2 py-0.5 border border-[#00ff41]/30 text-[#00ff41] font-mono font-bold tracking-wider">[ STABLE ]</span>
+                            </div>
+                            <h3 class="text-sm font-bold tracking-[0.1em] text-white uppercase mb-3 font-mono">Temporal Recompilation Sandbox</h3>
+                            <p class="text-xs text-[#a0a0a0] leading-relaxed font-sans font-light">A "time-travel" debugging environment. The system caches the GPU state every few frames. Scrub backward through the simulation timeline to isolate the exact microsecond a logic stream failed.</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-[#222] flex justify-between text-[9px] text-[#888] font-mono tracking-wider uppercase">
+                            <span>LATENCY: <span class="telemetry-val" data-min="6" data-max="14">10</span>ms</span>
+                            <span>FPS: <span class="telemetry-val" data-min="58" data-max="60">60</span>.0</span>
+                            <span>NODES: <span class="telemetry-val" data-min="256" data-max="1024">512</span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Live Operations Panel Section -->
+    <section id="infrastructure" class="ap-obsidian-grid py-32 px-10 lg:px-20 border-t border-white/5 relative overflow-hidden bg-[#0D0D0D]">
+        <!-- Micro-mechanical Grid Overlay -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.015)_0%,transparent_70%)] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-20 gap-8">
+                <div>
+                    <h2 class="text-4xl md:text-6xl font-800 tracking-tighter uppercase mb-4 text-white">Live Operations</h2>
+                    <p class="text-xs uppercase tracking-[0.4em] text-white/50">Audemars Piguet Micro-Mechanical Telemetry Dashboard</p>
+                </div>
+                <div class="flex items-center gap-4 bg-black/80 backdrop-blur-xl border border-white/10 px-6 py-3 rounded">
+                    <span class="glow-dot green"></span>
+                    <span class="text-[10px] font-mono tracking-widest text-green-400 uppercase">SYS_MONITOR: ACTIVE</span>
+                </div>
+            </div>
+
+            <!-- Dynamic Infrastructure Matrix -->
+            <div class="mb-24">
+                <h3 class="text-xs uppercase tracking-[0.4em] text-amber-500 font-mono mb-8">// ACTIVE PIPELINE SYSTEM DEPLOYMENTS</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {% for sys in deployments %}
+                    <div class="relative bg-[#111111] border {% if sys.status == 'LIVE' %}border-zinc-900 hover:border-emerald-500/40{% elif sys.status == 'MAINTENANCE' %}border-amber-500/20 hover:border-amber-500/40{% else %}border-zinc-900 hover:border-zinc-700{% endif %} p-6 flex flex-col justify-between transition-all duration-300">
+                        
+                        <div class="flex justify-between items-start w-full">
+                            <div>
+                                <h3 class="text-xl font-mono font-bold text-zinc-100 tracking-tight uppercase">{{ sys.name }}</h3>
+                                <p class="text-xs font-sans text-zinc-500 mt-0.5">{{ sys.sub_title }}</p>
+                            </div>
+                            
+                            <div class="flex items-center space-x-1">
+                                {% if sys.status == 'LIVE' %}
+                                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse mr-1"></span>
+                                    <span class="text-[9px] font-mono tracking-wider text-emerald-400 bg-emerald-500/5 px-2 py-0.5 border border-emerald-500/10">PROD_ACTIVE</span>
+                                {% elif sys.status == 'MAINTENANCE' %}
+                                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-400 mr-1"></span>
+                                    <span class="text-[9px] font-mono tracking-wider text-amber-400 bg-amber-500/5 px-2 py-0.5 border border-amber-500/10">SYS_PATCHING</span>
+                                {% else %}
+                                    <span class="text-[9px] font-mono tracking-wider text-zinc-400 bg-zinc-500/5 px-2 py-0.5 border border-zinc-500/10">STAGED_PIPELINE</span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="my-4 bg-[#070707] border border-zinc-950 p-4 font-mono text-xs">
+                            <div class="flex justify-between items-center text-zinc-600 text-[10px] border-b border-zinc-900 pb-2 mb-2">
+                                <span>SYSTEM PARAMETERS //</span>
+                                <span class="{% if sys.status == 'LIVE' %}text-emerald-500/80{% elif sys.status == 'MAINTENANCE' %}text-amber-500/80{% else %}text-zinc-500{% endif %} font-bold">{{ sys.telemetry_metric }}</span>
+                            </div>
+                            <p class="text-zinc-400 leading-relaxed font-sans">{{ sys.system_architecture }}</p>
+                        </div>
+
+                        <div class="mt-2 pt-4 border-t border-zinc-950 flex justify-between items-center">
+                            <span class="text-[10px] font-mono text-zinc-600">// IDX_NODE_0{{ forloop.counter }}</span>
+                            
+                            {% if sys.status == 'LIVE' and sys.endpoint_url %}
+                                <a href="{{ sys.endpoint_url }}" target="_blank" class="text-xs font-mono tracking-wider text-amber-500 hover:text-amber-400 border border-amber-500/20 bg-amber-500/5 px-4 py-2 transition-all duration-200">
+                                    LAUNCH ENVIRONMENT ↗
+                                </a>
+                            {% elif sys.status == 'MAINTENANCE' %}
+                                <button disabled class="text-xs font-mono tracking-wider text-amber-500/40 border border-amber-500/10 bg-amber-500/5 px-4 py-2 cursor-not-allowed">
+                                    HOTFIX IN PROGRESS
+                                </button>
+                            {% else %}
+                                <button disabled class="text-xs font-mono tracking-wider text-zinc-600 border border-zinc-900 bg-zinc-950 px-4 py-2 cursor-not-allowed">
+                                    AWAITING INFRA KEY
+                                </button>
+                            {% endif %}
+                        </div>
+                        {% include 'components/section_downloads.html' with item=sys %}
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full border border-dashed border-zinc-800 p-12 text-center">
+                        <p class="font-mono text-xs text-zinc-600">// CURRENTLY NO PUBLIC DEPLOYED INSTANCES DECLARED IN NODE RUNTIME</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Self-Correction Flex Layout: Auto-centers remaining cards beautifully -->
+            <div class="flex flex-wrap justify-center gap-10 w-full">
+                {% for project in live_projects %}
+                    <!-- AP Brushed Bezel Card -->
+                    <div class="ap-obsidian-card p-10 flex flex-col justify-between group hover:border-white/20 transition-all duration-700 w-full md:w-[380px] shrink-0">
+                        <div>
+                            <!-- Header Info -->
+                            <div class="flex justify-between items-center mb-8">
+                                <span class="text-[9px] uppercase tracking-[0.3em] text-white/40 font-mono">SYS_INTEGRITY</span>
+                                <div class="flex items-center gap-2">
+                                    {% if project.system_status == 'OPERATIONAL' or project.system_status == 'Operational' %}
+                                        <span class="glow-dot green"></span>
+                                        <span class="text-[10px] font-bold text-green-400 uppercase font-mono">{{ project.system_status }}</span>
+                                    {% elif project.system_status == 'MAINTENANCE' or project.system_status == 'Maintenance' %}
+                                        <span class="glow-dot amber"></span>
+                                        <span class="text-[10px] font-bold text-amber-500 uppercase font-mono">{{ project.system_status }}</span>
+                                    {% else %}
+                                        <span class="glow-dot slate"></span>
+                                        <span class="text-[10px] font-bold text-gray-500 uppercase font-mono">{{ project.system_status }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-800 tracking-tighter uppercase text-white mb-6 group-hover:text-leica-red transition-colors leading-tight min-h-[64px]">
+                                {{ project.title }}
+                            </h3>
+
+                            <!-- Real-time metrics grid -->
+                            <div class="grid grid-cols-2 gap-6 py-6 border-t border-b border-white/5 mb-8">
+                                <div>
+                                    <span class="text-[9px] uppercase tracking-[0.2em] text-white/40 block mb-1">Uptime</span>
+                                    <span class="text-lg font-bold text-white font-mono">{{ project.uptime_percentage }}%</span>
+                                </div>
+                                <div>
+                                    <span class="text-[9px] uppercase tracking-[0.2em] text-white/40 block mb-1">Active load</span>
+                                    <span class="text-lg font-bold text-white font-mono telemetry-counter" data-base="{{ project.active_api_requests }}">
+                                        {{ project.active_api_requests }}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <!-- Processing Metric specific to projects -->
+                            {% if "Sentinel" in project.title %}
+                                <div class="mb-8 p-4 bg-white/5 rounded border border-white/5">
+                                    <span class="text-[9px] uppercase tracking-[0.2em] text-white/50 block mb-1">Flow metrics scanned</span>
+                                    <span class="text-xs font-mono text-green-400 font-bold" id="hufp-flow-metric">1,420/s</span>
+                                </div>
+                            {% elif "Linkup" in project.title %}
+                                <div class="mb-8 p-4 bg-white/5 rounded border border-white/5">
+                                    <span class="text-[9px] uppercase tracking-[0.2em] text-white/50 block mb-1">Resource Stability</span>
+                                    <span class="text-xs font-mono text-green-400 font-bold">100.00% Operational</span>
+                                </div>
+                            {% else %}
+                                <div class="mb-8 p-4 bg-white/5 rounded border border-white/5">
+                                    <span class="text-[9px] uppercase tracking-[0.2em] text-white/50 block mb-1">Compiler Scaffolds</span>
+                                    <span class="text-xs font-mono text-green-400 font-bold" id="algo-scaffolds">95 assets/min</span>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Card Action Buttons -->
+                        <div class="flex flex-col gap-3 mt-8">
+                            {% if project.github_sync_url %}
+                                <a href="{{ project.github_sync_url }}" target="_blank" class="ap-button text-center py-3 text-[9px] uppercase tracking-[0.3em] font-bold border border-white/10 text-white/60 hover:text-white hover:border-white transition-all">
+                                    Source Repository
+                                </a>
+                            {% endif %}
+                            
+                            {% if "Sentinel" in project.title %}
+                                {% with found_pdf="" %}
+                                    {% for resource in local_resources %}
+                                        {% if "Sentinel" in resource.title %}
+                                            <a href="{% if resource.web_view_link %}{{ resource.web_view_link }}{% else %}{{ resource.resource_file.url }}{% endif %}" target="_blank" class="ap-button text-center py-3 text-[9px] uppercase tracking-[0.3em] font-bold bg-white/5 hover:bg-white/10 text-white transition-all border border-white/10 flex items-center justify-center gap-2">
+                                                <svg class="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                                </svg>
+                                                Acquire System Architecture
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endwith %}
+                            {% else %}
+                                <a href="/admin/portfolio/liveproject/" target="_blank" class="ap-button text-center py-3 text-[9px] uppercase tracking-[0.3em] font-bold bg-white/5 hover:bg-white/10 text-white transition-all border border-white/10">
+                                    Admin Control Room
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-span-full py-20 text-center border border-white/5 w-full">
+                        <p class="font-serif italic text-white/30 text-xl uppercase tracking-widest">No active project telemetry streams detected.</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </section>
+
+    <div class="border-x border-zinc-800/80 w-full transition-colors duration-1000">
+        <!-- Knowledge Vault (Unified dual-source assets feed) -->
+        {% include 'components/knowledge_vault.html' %}
+
+        <!-- Machine Learning & Systems Architecture Visualizations -->
+        <section id="architecture-visuals" class="w-full bg-[#0A0A0A] py-16 px-8 lg:px-[48px] border-t border-[#1a1a1a]">
+            <div class="mb-12 border-b border-zinc-900 pb-6 flex items-center gap-3 max-w-[1400px] mx-auto">
+                <span class="w-2.5 h-2.5 rounded-none bg-[#cc0000] shadow-[0_0_10px_#cc0000] animate-pulse"></span>
+                <h3 class="text-xs font-mono text-zinc-400 tracking-widest uppercase">
+                    // ARCHITECTURAL TELEMETRY & ML MATRICES
+                </h3>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-16 w-full max-w-[1400px] mx-auto">
+                
+                <!-- Visual 01: Topology Network -->
+                <div class="flex flex-col lg:flex-row items-center gap-10">
+                    <div class="w-full lg:w-1/2 space-y-6">
+                        <div class="flex items-center gap-3">
+                            <span class="text-[10px] font-mono text-zinc-500 bg-zinc-900 px-2 py-1 uppercase tracking-widest border border-zinc-800">Visual 01</span>
+                            <h4 class="text-xl md:text-2xl font-mono font-bold text-zinc-200 uppercase tracking-tight">System Topology Graph</h4>
+                        </div>
+                        <p class="text-sm font-sans text-zinc-400 leading-relaxed">
+                            This network graph models the relationship between core domains and peripheral tech stacks. <span class="text-[#00ff41]">Green nodes</span> represent active subsystems, while <span class="text-[#ffb000]">amber nodes</span> indicate central processing hubs. This visualizes how isolated environments (like the Crypto Vault or Execution JIT) communicate with the broader edge API infrastructure.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 pt-4 border-t border-zinc-900">
+                            <div>
+                                <span class="block text-[10px] font-mono text-zinc-600 mb-1">NODE DENSITY</span>
+                                <span class="text-sm font-mono text-zinc-300">High / Clustered</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] font-mono text-zinc-600 mb-1">RENDER ENGINE</span>
+                                <span class="text-sm font-mono text-zinc-300">NetworkX Force-Directed</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/2 ap-obsidian-card p-2 flex items-center justify-center group hover:border-[#00ff41]/30 transition-all duration-500">
+                        <img src="{% static 'portfolio/assets/topology_network.svg' %}" alt="Topology Network" class="w-full h-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <!-- Visual 02: Capability Radar -->
+                <div class="flex flex-col lg:flex-row-reverse items-center gap-10">
+                    <div class="w-full lg:w-1/2 space-y-6">
+                        <div class="flex items-center gap-3">
+                            <span class="text-[10px] font-mono text-zinc-500 bg-zinc-900 px-2 py-1 uppercase tracking-widest border border-zinc-800">Visual 02</span>
+                            <h4 class="text-xl md:text-2xl font-mono font-bold text-zinc-200 uppercase tracking-tight">Capability Radar Weights</h4>
+                        </div>
+                        <p class="text-sm font-sans text-zinc-400 leading-relaxed">
+                            A multi-dimensional mapping of core competencies scaled dynamically. The radar chart visually quantifies proficiency across diverse vectors such as <span class="text-zinc-200 font-semibold">Low-Level Execution</span>, <span class="text-zinc-200 font-semibold">Cryptography</span>, and <span class="text-zinc-200 font-semibold">AI Models</span>. The expansive footprint indicates a highly balanced, full-stack architectural mastery.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 pt-4 border-t border-zinc-900">
+                            <div>
+                                <span class="block text-[10px] font-mono text-zinc-600 mb-1">DISTRIBUTION</span>
+                                <span class="text-sm font-mono text-zinc-300">Balanced Hexagonal</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] font-mono text-zinc-600 mb-1">PEAK METRICS</span>
+                                <span class="text-sm font-mono text-[#00ff41]">AI Models (0.98)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/2 ap-obsidian-card p-2 flex items-center justify-center group hover:border-[#ffb000]/30 transition-all duration-500">
+                        <img src="{% static 'portfolio/assets/capability_radar.svg' %}" alt="Capability Radar" class="w-full h-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+                <!-- Visual 03: Synergy Heatmap -->
+                <div class="flex flex-col lg:flex-row items-center gap-10">
+                    <div class="w-full lg:w-1/2 space-y-6">
+                        <div class="flex items-center gap-3">
+                            <span class="text-[10px] font-mono text-zinc-500 bg-zinc-900 px-2 py-1 uppercase tracking-widest border border-zinc-800">Visual 03</span>
+                            <h4 class="text-xl md:text-2xl font-mono font-bold text-zinc-200 uppercase tracking-tight">Component Synergy Heatmap</h4>
+                        </div>
+                        <p class="text-sm font-sans text-zinc-400 leading-relaxed">
+                            This correlation matrix measures the interoperability and integration frequency between distinct technologies in the stack. Brighter cells represent high synergy (e.g., <span class="text-zinc-200 font-semibold">FastAPI + PostgreSQL</span> or <span class="text-zinc-200 font-semibold">PyTorch + PINNs</span>). This acts as a blueprint for identifying optimal stack combinations for rapid R&D deployment.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 pt-4 border-t border-zinc-900">
+                            <div>
+                                <span class="block text-[10px] font-mono text-zinc-600 mb-1">CORRELATION</span>
+                                <span class="text-sm font-mono text-zinc-300">High Variance</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] font-mono text-zinc-600 mb-1">DATA TYPE</span>
+                                <span class="text-sm font-mono text-zinc-300">Normalized [0.0 - 1.0]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/2 ap-obsidian-card p-2 flex items-center justify-center group hover:border-[#cc0000]/30 transition-all duration-500">
+                        <img src="{% static 'portfolio/assets/synergy_heatmap.svg' %}" alt="Synergy Heatmap" class="w-full h-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Refactored Telemetry Stack -->
+        <section id="capabilities" class="w-full bg-[#0A0A0A] py-16 px-[48px] border-t border-[#1a1a1a]">
+            <h3 class="text-xs font-mono text-[#ffb000] tracking-wider mb-8 w-full max-w-[1200px] mx-auto uppercase">
+                // 04 // CAPABILITY WEIGHTS [NODE TELEMETRY]
+            </h3>
+            
+            <script id="stack-metrics-data" type="application/json">
+            [
+              {% for metric in stack_metrics %}
+              {
+                "id": "NODE_0{{ metric.order }}",
+                "category": "{{ metric.category }}",
+                "title": "{{ metric.technology_name|escapejs }}",
+                "body": "{{ metric.verified_use_cases|escapejs }}"
+              }{% if not forloop.last %},{% endif %}
+              {% endfor %}
+            ]
+            </script>
+            <div id="react-capabilities-root"></div>
+            <div id="react-ventures-root"></div>
+        </section>
+    </div>
+
+    <!-- Tapisserie Micro-Telemetry Styling & Counter Fluctuation Script -->
+    <style>
+        .ap-obsidian-grid {
+            background-color: #0D0D0D;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+            background-size: 16px 16px;
+            position: relative;
+        }
+        
+        .ap-obsidian-card {
+            background: linear-gradient(135deg, #131313 0%, #0A0A0A 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 4px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.9), 0 20px 40px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ap-obsidian-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+        }
+
+        .glow-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+        }
+
+        .glow-dot.green {
+            background-color: #10b981;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        .glow-dot.green::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #10b981;
+            animation: pulse-glow 2s infinite;
+        }
+
+        .glow-dot.amber {
+            background-color: #f59e0b;
+            box-shadow: 0 0 10px #f59e0b;
+        }
+
+        .glow-dot.amber::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #f59e0b;
+            animation: pulse-glow 2s infinite;
+        }
+
+        .glow-dot.slate {
+            background-color: #6b7280;
+            box-shadow: 0 0 10px #6b7280;
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(3.5); opacity: 0; }
+        }
+
+        .ap-button {
+            border-radius: 2px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Live Counter Fluctuations (AP Industrial Aesthetics)
+            const counters = document.querySelectorAll('.telemetry-counter');
+            
+            setInterval(() => {
+                counters.forEach(counter => {
+                    const baseValue = parseInt(counter.getAttribute('data-base')) || 100;
+                    const variationRange = Math.max(5, Math.floor(baseValue * 0.05));
+                    const variation = Math.floor(Math.random() * (variationRange * 2 + 1)) - variationRange;
+                    const newValue = baseValue + variation;
+                    counter.textContent = newValue.toLocaleString();
+                });
+
+                // Fluctuates scanning metrics
+                const flowMetric = document.getElementById('hufp-flow-metric');
+                if (flowMetric) {
+                    const randomFlow = 1350 + Math.floor(Math.random() * 150);
+                    flowMetric.textContent = `${randomFlow.toLocaleString()}/s`;
+                }
+
+                // Fluctuates scaffolding throughput
+                const algoMetric = document.getElementById('algo-scaffolds');
+                if (algoMetric) {
+                    const randomThroughput = 90 + Math.floor(Math.random() * 12);
+                    algoMetric.textContent = `${randomThroughput} assets/min`;
+                }
+            }, 3000);
+        });
+    </script>
+</div>
+{% endblock %}

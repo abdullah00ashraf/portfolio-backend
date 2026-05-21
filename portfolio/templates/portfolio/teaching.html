@@ -1,0 +1,48 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Instruction | {{ profile.name }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen">
+    <!-- Hero Section -->
+    <section data-nasa-bg class="leica-section min-h-screen flex flex-col items-center justify-center text-center px-10">
+        <h1 class="text-6xl md:text-9xl font-800 tracking-tighter uppercase mb-10 leading-none">Pedagogy.</h1>
+        <p class="text-xs md:text-sm uppercase tracking-[0.6em] text-white/60 mb-12">Shaping the Future of Academic Inquiry</p>
+        <div class="w-12 h-px bg-leica-red"></div>
+    </section>
+
+    <!-- Courses Grid -->
+    <section data-nasa-bg class="leica-section min-h-screen py-32 px-10 lg:px-40">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+            {% for course in courses %}
+                <div class="bg-midnight/30 backdrop-blur-xl p-12 border border-white/5 flex flex-col justify-between group hover:border-leica-red/50 transition-all duration-700">
+                    <div>
+                        <div class="flex justify-between items-start mb-10">
+                            <span class="text-[10px] uppercase tracking-[0.4em] text-leica-red font-bold">{{ course.semester }}</span>
+                            <span class="text-[10px] uppercase tracking-[0.3em] text-white/30 font-bold">{{ course.course_code }}</span>
+                        </div>
+                        <h2 class="text-3xl md:text-5xl font-800 tracking-tighter uppercase text-white group-hover:text-leica-red transition-colors duration-500 mb-8 leading-tight">
+                            {{ course.course_title }}
+                        </h2>
+                        <div class="text-white/60 text-lg font-light leading-relaxed mb-12 prose prose-invert">
+                            {{ course.description|linebreaks }}
+                        </div>
+                    </div>
+                    
+                    {% if course.syllabus %}
+                    <div class="mt-8 pt-10 border-t border-white/5">
+                        <a href="{{ course.syllabus.url }}" target="_blank" class="ghost-button px-12 py-5 inline-block text-[10px] uppercase tracking-[0.3em] font-bold">
+                            Acquire Syllabus
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <div class="col-span-full py-40 text-center border border-white/5">
+                    <p class="font-serif italic text-white/30 text-2xl uppercase tracking-widest">Curriculum under revision.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

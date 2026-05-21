@@ -1,0 +1,62 @@
+<section class="w-full bg-[#0A0A0A] border-b border-zinc-900 pt-24 pb-20 px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <div class="lg:col-span-5 space-y-8 lg:sticky lg:top-24">
+            <div class="space-y-2">
+                <span class="text-xs font-mono tracking-[0.4em] text-amber-500 uppercase block">// PRINCIPAL ARCHITECT</span>
+                <h1 class="text-5xl font-serif text-zinc-100 tracking-tight uppercase font-medium leading-none">
+                    {{ profile.name }}
+                </h1>
+                <p class="text-sm font-mono text-zinc-400 font-medium tracking-tight mt-3">
+                    {{ profile.designation }}
+                </p>
+            </div>
+
+            <div class="bg-[#111111] border border-zinc-900 p-6 font-sans text-sm text-zinc-300 leading-relaxed rounded-none shadow-sm">
+                <span class="text-[10px] font-mono text-zinc-500 tracking-widest block mb-3">// OPERATIONAL MANIFESTO</span>
+                "{{ profile.manifesto_statement }}"
+            </div>
+
+            <div class="flex items-center space-x-6 pt-2 font-mono text-xs text-zinc-500">
+                <div>
+                    <span class="block text-zinc-600 uppercase text-[10px]">AUTH_LOC //</span>
+                    <span class="text-zinc-400">Lucknow, IN</span>
+                </div>
+                <div>
+                    <span class="block text-zinc-600 uppercase text-[10px]">SIGNATURE_REF //</span>
+                    <span class="text-amber-500 font-bold font-serif text-sm">[{{ profile.profile_signature_initial }}]</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-7 space-y-12 lg:pl-6 border-l border-zinc-950 lg:border-zinc-900/40">
+            
+            <div class="space-y-4">
+                <h2 class="text-xs font-mono tracking-[0.2em] text-zinc-500 uppercase flex items-center">
+                    <span class="inline-block w-1.5 h-1.5 bg-amber-500/80 mr-2"></span> ENGINEERING MINDSET & PHILOSOPHY
+                </h2>
+                <div class="text-zinc-400 font-sans text-sm leading-relaxed text-justify space-y-4">
+                    <p>{{ profile.core_mindset_philosophy }}</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 pt-4">
+                <h2 class="text-xs font-mono tracking-[0.2em] text-zinc-500 uppercase flex items-center">
+                    <span class="inline-block w-1.5 h-1.5 bg-amber-500/80 mr-2"></span> ACTIVE OBJECTIVES & SYSTEM GOALS
+                </h2>
+                <div class="bg-[#111111]/40 border border-zinc-900/60 p-6 rounded-none font-mono text-xs text-zinc-300 space-y-3">
+                    <div class="text-zinc-500 border-b border-zinc-900 pb-2 mb-2 flex justify-between">
+                        <span>TARGET SYSTEM REGISTRY</span>
+                        <span>PIPELINE VER: 1.0.3</span>
+                    </div>
+                    
+                    <div class="space-y-3 font-sans text-sm leading-relaxed text-zinc-400">
+                        {{ profile.immediate_system_goals|linebreaksbr }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

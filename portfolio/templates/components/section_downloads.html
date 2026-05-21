@@ -1,0 +1,23 @@
+{% if item.asset_attachments.all %}
+<div class="mt-6 pt-4 border-t border-zinc-950 space-y-2">
+    <span class="text-[9px] font-mono tracking-widest text-zinc-600 block uppercase">
+        // ATTACHED DATA VAULT REPOSITORIES:
+    </span>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {% for asset in item.asset_attachments.all %}
+        {% if asset.is_active %}
+        <a href="{{ asset.get_download_url }}" download target="_blank" 
+           class="flex items-center justify-between p-2.5 bg-[#070707] border border-zinc-900 text-xs font-mono text-zinc-400 hover:text-amber-500 hover:border-amber-500/30 transition-all group">
+            <span class="truncate pr-2">
+                {% if asset.resource_type == 'LOCAL' %}💾{% else %}📁{% endif %} {{ asset.label }}
+            </span>
+            <span class="text-[10px] text-zinc-600 group-hover:text-amber-500 transition-colors uppercase tracking-tight shrink-0">
+                FETCH_ASSET 📥
+            </span>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

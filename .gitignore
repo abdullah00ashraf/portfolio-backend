@@ -1,0 +1,26 @@
+# Credentials isolation
+credentials/
+google_credentials.json
+
+# Local Python Environment & Caches
+venv/
+*.pyc
+__pycache__/
+.pytest_cache/
+
+# Databases
+db.sqlite3
+
+# Media and Static files
+media/
+static/
+staticfiles/
+
+# System and editor caches
+.idea/
+.vscode/
+.DS_Store
+
+# Environment variables & Key files
+.env
+*.json.key

@@ -1,0 +1,24 @@
+{
+    "certifications": [
+        {
+            "title": "AWS Certified Solutions Architect \u2013 Associate",
+            "authority": "Amazon Web Services (AWS)",
+            "date": "September 2025"
+        },
+        {
+            "title": "\"Carbon Smart\" Sustainability Certification",
+            "authority": "Infosys Springboard",
+            "date": "August 2025"
+        },
+        {
+            "title": "Full Stack Software Engineering Specialization",
+            "authority": "Meta / Coursera",
+            "date": "March 2025"
+        }
+    ],
+    "professional_milestones": [
+        "Invited Demonstrator at the formal inauguration of Dr. A.P.J. Abdul Kalam AI Lab (September 2025).",
+        "Appointed Team Leader of The Aegis (Team ID 75864) for Smart India Hackathon 2025.",
+        "Contributed Lucknow Smart City geographic grid coordinates to mapping APIs."
+    ]
+}

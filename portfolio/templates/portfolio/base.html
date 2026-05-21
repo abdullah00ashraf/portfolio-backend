@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Professor's Academic Portal{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'leica-red': '#E0000B',
+                        'midnight': '#000000',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            },
+            plugins: [
+                // Typography plugin is usually included in the play CDN
+            ]
+        }
+
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+        body { background-color: #000; color: #fff; }
+        .leica-section {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transition: background-image 1s ease-in-out;
+        }
+        .ghost-button {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #fff;
+            border-radius: 9999px;
+            color: #fff;
+        }
+        .ghost-button:hover {
+            background-color: #E0000B;
+            border-color: #E0000B;
+            transform: scale(1.05);
+        }
+        .red-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #E0000B;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Fade-in-on-scroll effects */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Elite brutalist/terminal navigation styles */
+        .terminal-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 48px;
+            background-color: rgba(10, 10, 10, 0.85); /* Deep charcoal semi-transparent background */
+            border-bottom: 1px solid #1c1c1c; /* Subtle bottom border */
+            box-sizing: border-box;
+            font-family: 'Space Mono', monospace;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #cc0000; /* Glowing crimson status indicator */
+            border-radius: 50%;
+            box-shadow: 0 0 10px #cc0000, 0 0 20px rgba(204, 0, 0, 0.6);
+            animation: status-pulse 2s infinite ease-in-out;
+            flex-shrink: 0;
+        }
+
+        @keyframes status-pulse {
+            0% {
+                transform: scale(0.9);
+                box-shadow: 0 0 6px #cc0000, 0 0 12px rgba(204, 0, 0, 0.4);
+                opacity: 0.85;
+            }
+            50% {
+                transform: scale(1.15);
+                box-shadow: 0 0 14px #cc0000, 0 0 25px rgba(204, 0, 0, 0.9);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.9);
+                box-shadow: 0 0 6px #cc0000, 0 0 12px rgba(204, 0, 0, 0.4);
+                opacity: 0.85;
+            }
+        }
+
+        .brand-name {
+            color: #ffffff; /* Bright white brand for hierarchy */
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0e0; /* Off-white ash gray for reduced eye strain */
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 4px 0;
+            position: relative;
+        }
+
+        .nav-links a span {
+            color: #555555; /* Muted prefix // comments style */
+            margin-right: 4px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff; /* Pure white on hover */
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-links a:hover span {
+            color: #888888; /* Slightly brighten slashes on hover */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-on-scroll').forEach(el => observer.observe(el));
+        });
+    </script>
+</head>
+<body class="font-sans antialiased bg-[#0A0A0A] text-zinc-300">
+    <div id="canvas-runtime-container" class="fixed inset-0 w-full h-full z-0 pointer-events-none bg-[#050505]">
+        <!-- Legacy fluid simulation canvas disabled in favor of premium MonolithicChronographLayer -->
+    </div>
+
+    <main class="relative w-full min-h-screen z-10 pointer-events-auto overflow-x-hidden selection:bg-amber-500/20 selection:text-amber-200">
+        <nav class="terminal-nav">
+            <!-- WebGL Interactive Background Canvas -->
+            <canvas id="nav-webgl-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+            
+            <!-- Navbar Content -->
+            <div class="nav-brand relative z-10">
+                <span class="status-dot"></span>
+                <span class="brand-name">{{ profile.name|default:"ABDULLAH ASHRAF" }}</span>
+            </div>
+            
+            <ul class="nav-links relative z-10">
+                <li><a href="#prologue"><span>//</span> PROLOGUE</a></li>
+                <li><a href="#pedagogy"><span>//</span> R&D SANDBOX</a></li>
+                <li><a href="#infrastructure"><span>//</span> INFRASTRUCTURE</a></li>
+                <li><a href="#capabilities"><span>//</span> CAPABILITIES</a></li>
+            </ul>
+        </nav>
+
+        {% block content %}
+        {% endblock %}
+
+        <div id="react-footer-root"></div>
+    </main>
+
+    <script src="{% static 'portfolio/js/interaction.js' %}"></script>
+    <!-- Legacy fluid engine script disabled to conserve resources -->
+    <script src="{% static 'portfolio/js/header_webgl.js' %}"></script>
+    <script src="{% static 'portfolio/js/prototyping_webgl.js' %}"></script>
+    <script src="{% static 'portfolio/js/footer.bundle.js' %}"></script>
+</body>
+</html>

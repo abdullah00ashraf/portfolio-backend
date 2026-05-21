@@ -1,0 +1,213 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Archive | {{ profile.name }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen">
+    <!-- Hero Section -->
+    <section data-nasa-bg class="leica-section min-h-screen flex flex-col items-center justify-center text-center px-10 overflow-hidden">
+        <h1 class="text-6xl md:text-9xl font-800 tracking-tighter uppercase mb-20 leading-none z-10">Archive.</h1>
+        
+        <div class="wrapper scale-150 md:scale-100 mt-20">
+            <div class="inner" style="--quantity: 4;">
+                <div class="card cursor-pointer" style="--index: 0;--color-card: 197, 160, 89;" onclick="filterPubs('all')">
+                    <div class="img flex flex-col items-center justify-center p-6 border-b border-white/5">
+                        <span class="text-[9px] uppercase tracking-[0.4em] font-bold text-[#C5A059] mb-4">Collection</span>
+                        <span class="text-xl font-800 tracking-tighter uppercase text-white">All</span>
+                    </div>
+                </div>
+                <div class="card cursor-pointer" style="--index: 1;--color-card: 224, 0, 11;" onclick="filterPubs('Journal')">
+                    <div class="img flex flex-col items-center justify-center p-6 border-b border-white/5">
+                        <span class="text-[9px] uppercase tracking-[0.4em] font-bold text-leica-red mb-4">Scholarly</span>
+                        <span class="text-xl font-800 tracking-tighter uppercase text-white">Journals</span>
+                    </div>
+                </div>
+                <div class="card cursor-pointer" style="--index: 2;--color-card: 255, 255, 255;" onclick="filterPubs('Conference')">
+                    <div class="img flex flex-col items-center justify-center p-6 border-b border-white/5">
+                        <span class="text-[9px] uppercase tracking-[0.4em] font-bold text-white/40 mb-4">Proceedings</span>
+                        <span class="text-xl font-800 tracking-tighter uppercase text-white">Conferences</span>
+                    </div>
+                </div>
+                <div class="card cursor-pointer" style="--index: 3;--color-card: 197, 160, 89;" onclick="filterPubs('Book')">
+                    <div class="img flex flex-col items-center justify-center p-6 border-b border-white/5">
+                        <span class="text-[9px] uppercase tracking-[0.4em] font-bold text-[#C5A059] mb-4">Literature</span>
+                        <span class="text-xl font-800 tracking-tighter uppercase text-white">Books</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-xs md:text-sm uppercase tracking-[0.6em] text-white/40 mt-20 z-10">Systematic Collection of Scholarly Contributions</p>
+    </section>
+
+    <!-- Publications List -->
+    <section data-nasa-bg class="leica-section min-h-screen py-32 px-10 lg:px-40">
+        <div id="publications-container" class="space-y-12">
+            {% for pub in publications %}
+                <div class="pub-item bg-midnight/30 backdrop-blur-xl p-10 md:p-16 border border-white/5 group hover:border-leica-red/30 transition-all duration-700" data-type="{{ pub.publication_type }}">
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+                        <div class="lg:col-span-1">
+                            <span class="text-[10px] uppercase tracking-[0.4em] text-leica-red font-bold block mb-4">{{ pub.year_of_publication }}</span>
+                            <div class="h-px w-full bg-white/5 mt-4 mb-8"></div>
+                            <p class="text-[9px] text-white/40 uppercase tracking-widest leading-loose font-bold italic">
+                                {{ pub.publication_type }}
+                            </p>
+                        </div>
+                        
+                        <div class="lg:col-span-3 space-y-8">
+                            <h2 class="text-2xl md:text-4xl font-800 tracking-tighter uppercase text-white group-hover:text-leica-red transition-colors duration-500 leading-tight">
+                                {{ pub.title }}
+                            </h2>
+                            
+                            <p class="text-sm text-white/50 font-light italic tracking-wide">
+                                {{ pub.authors }}
+                            </p>
+
+                            <p class="text-[10px] text-white/30 uppercase tracking-[0.2em] font-bold">
+                                {{ pub.journal_conference_name }}
+                            </p>
+
+                            <div class="flex flex-wrap gap-10 pt-6">
+                                {% if pub.doi_link %}
+                                    <a href="{{ pub.doi_link }}" target="_blank" class="text-[9px] uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors border-b border-white/10 pb-1">Digital Identity</a>
+                                {% endif %}
+                                {% if pub.pdf_file %}
+                                    <a href="{{ pub.pdf_file.url }}" target="_blank" class="text-[9px] uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors border-b border-white/10 pb-1">Full Manuscript</a>
+                                {% endif %}
+                                {% if pub.bibtex %}
+                                    <button onclick="toggleBibtex('bib-{{ pub.id }}')" class="text-[9px] uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors border-b border-white/10 pb-1">BibTeX Citation</button>
+                                {% endif %}
+                            </div>
+
+                            {% if pub.bibtex %}
+                            <div id="bib-{{ pub.id }}" class="hidden mt-8 bg-midnight/80 p-8 border border-white/5">
+                                <pre class="text-[10px] text-leica-red/80 font-mono leading-loose overflow-x-auto">{{ pub.bibtex }}</pre>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="py-40 text-center border border-white/5">
+                    <p class="font-serif italic text-white/30 text-2xl uppercase tracking-widest">Archive under curation.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+<style>
+    /* From Uiverse.io by ilkhoeri */ 
+    .wrapper {
+      width: 100%;
+      height: 300px; /* Adjusted from 100% to fit */
+      position: relative;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible; /* Changed from hidden to allow 3D depth */
+    }
+
+    .inner {
+      --w: 160px; /* Slightly larger for better readability */
+      --h: 220px;
+      --translateZ: calc((var(--w) + var(--h)) + 40px);
+      --rotateX: -10deg; /* Less aggressive tilt */
+      --perspective: 1200px;
+      position: absolute;
+      width: var(--w);
+      height: var(--h);
+      top: 10%;
+      left: calc(50% - (var(--w) / 2));
+      z-index: 2;
+      transform-style: preserve-3d;
+      transform: perspective(var(--perspective));
+      animation: rotating 40s linear infinite; /* Slower, more elegant rotation */
+    }
+
+    @keyframes rotating {
+      from {
+        transform: perspective(var(--perspective)) rotateX(var(--rotateX))
+          rotateY(0);
+      }
+      to {
+        transform: perspective(var(--perspective)) rotateX(var(--rotateX))
+          rotateY(1turn);
+      }
+    }
+
+    .card {
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 4px; /* More angular, Leica-like */
+      overflow: hidden;
+      inset: 0;
+      transform: rotateY(calc((360deg / var(--quantity)) * var(--index)))
+        translateZ(var(--translateZ));
+      background: rgba(13, 13, 13, 0.6);
+      backdrop-filter: blur(12px);
+      transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .card:hover {
+        transform: rotateY(calc((360deg / var(--quantity)) * var(--index)))
+        translateZ(calc(var(--translateZ) + 60px)) scale(1.05);
+        border-color: rgba(var(--color-card), 0.5);
+        background: rgba(13, 13, 13, 0.9);
+        box-shadow: 0 0 30px rgba(var(--color-card), 0.1);
+    }
+
+    .img {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(var(--color-card), 0.05) 0%,
+        rgba(13, 13, 13, 0) 50%,
+        rgba(var(--color-card), 0.05) 100%
+      );
+    }
+
+    .pub-filter-btn.active {
+        background-color: #E0000B;
+        border-color: #E0000B;
+        color: white;
+    }
+</style>
+
+<script>
+    function filterPubs(type) {
+        const container = document.getElementById('publications-container');
+        const items = container.getElementsByClassName('pub-item');
+        const buttons = document.getElementsByClassName('pub-filter-btn');
+
+        // Update buttons
+        for (let btn of buttons) {
+            btn.classList.remove('active');
+            if (btn.innerText.toLowerCase().includes(type.toLowerCase()) || (type === 'all' && btn.innerText.toLowerCase().includes('all'))) {
+                btn.classList.add('active');
+            }
+        }
+
+        // Filter items
+        for (let item of items) {
+            if (type === 'all' || item.getAttribute('data-type') === type) {
+                item.style.display = 'block';
+                item.style.opacity = '0';
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transition = 'opacity 0.5s ease-in-out';
+                }, 10);
+            } else {
+                item.style.display = 'none';
+            }
+        }
+    }
+
+    function toggleBibtex(id) {
+        const element = document.getElementById(id);
+        element.classList.toggle('hidden');
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,72 @@
+<section id="rd-sandbox" class="w-full bg-[#0A0A0A] border-t border-zinc-900 py-16 px-8">
+    <div class="max-w-7xl mx-auto">
+        
+        <div class="mb-12 border-b border-zinc-900 pb-4 flex justify-between items-end">
+            <div>
+                <h2 class="text-xs font-mono tracking-[0.3em] text-amber-500 uppercase">// 06 // INTELLECTUAL R&D & BLUEPRINTS</h2>
+                <h3 class="text-3xl font-serif text-zinc-200 mt-1 uppercase">Feasibility & Learning Blueprints</h3>
+            </div>
+            <span class="text-[10px] font-mono text-zinc-600">// CONTEXT: R&D SANDBOX</span>
+        </div>
+
+        {% for project in learning_projects %}
+        {% if project.is_public %}
+        <div class="border border-zinc-900 bg-[#111111] p-8 space-y-8 mb-8">
+            
+            <div class="flex justify-between items-start border-b border-zinc-950 pb-4">
+                <div>
+                    <h4 class="text-2xl font-serif text-zinc-100 uppercase tracking-tight">{{ project.title }}</h4>
+                    <span class="text-[10px] font-mono text-zinc-500 mt-1 block">TARGET BOUNDARY: SIMULATION & ENVIRONMENT LAYER</span>
+                </div>
+                {% if project.drive_folder_id %}
+                <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/5 px-2 py-1 border border-emerald-500/10">
+                    📁 CLOUD ARCHIVE CONNECTED
+                </span>
+                {% endif %}
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 font-sans text-sm text-zinc-400 leading-relaxed">
+                
+                <div class="space-y-6">
+                    <div class="bg-[#070707] border border-zinc-950 p-5">
+                        <span class="text-xs font-mono text-amber-500 tracking-wider block mb-2">// 1. CORE CONCEPT APPROACHES</span>
+                        <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed">{{ project.core_concept_approaches }}</p>
+                    </div>
+                    
+                    <div class="bg-[#070707] border border-zinc-950 p-5">
+                        <span class="text-xs font-mono text-amber-500 tracking-wider block mb-2">// 2. PARAMETERS TO MONITOR</span>
+                        <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed">{{ project.key_parameters }}</p>
+                    </div>
+
+                    <div class="bg-[#070707] border border-zinc-950 p-5">
+                        <span class="text-xs font-mono text-amber-500 tracking-wider block mb-2">// 5. DEVELOPMENT MVP MATRIX</span>
+                        <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed">{{ project.implementation_mvp_steps }}</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-[#070707] border border-zinc-950 p-5">
+                        <span class="text-xs font-mono text-amber-500 tracking-wider block mb-2">// 3. MACHINE LEARNING MODEL ARCHITECTURES</span>
+                        <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed">{{ project.ml_architectures }}</p>
+                    </div>
+
+                    <div class="bg-[#070707] border border-zinc-950 p-5">
+                        <span class="text-xs font-mono text-amber-500 tracking-wider block mb-2">// 4. SYSTEM END-TO-END PIPELINE</span>
+                        <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed">{{ project.system_architecture_layers }}</p>
+                    </div>
+
+                    <div class="bg-[#070707] border border-zinc-950 p-5 border-l-2 border-l-amber-500/30">
+                        <span class="text-xs font-mono text-amber-500 tracking-wider block mb-2">// 6. SYSTEM ENHANCEMENTS</span>
+                        <p class="whitespace-pre-line text-zinc-300 font-sans leading-relaxed">{{ project.advanced_features }}</p>
+                    </div>
+                </div>
+
+            </div>
+
+            {% include 'components/section_downloads.html' with item=project %}
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+</section>
