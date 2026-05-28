@@ -309,3 +309,8 @@ This document tracks verified architectural iterations, feature additions, and p
 - **Status**: Verified & Integrated into `main`
 - **Timestamp**: `2026-05-25T17:38:29+0530`
 
+### [2026-05-28 16:27 IST] - `docs(api): update OpenAPI 3.0 schema specs for portfolio endpoints`
+- **Component**: Django Unfold & Media Gateway
+- **Status**: Verified & Integrated into `main`
+- **Timestamp**: `2026-05-28T16:27:21+0530`
+
