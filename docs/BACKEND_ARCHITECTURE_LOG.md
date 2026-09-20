@@ -369,3 +369,8 @@ This document tracks verified architectural iterations, feature additions, and p
 - **Status**: Verified & Integrated into `main`
 - **Timestamp**: `2026-09-19T14:57:40+0530`
 
+### [2026-09-20 21:55 IST] - `refactor(serializers): add nested serialization for technology tags`
+- **Component**: Django Unfold & Media Gateway
+- **Status**: Verified & Integrated into `main`
+- **Timestamp**: `2026-09-20T21:55:45+0530`
+
