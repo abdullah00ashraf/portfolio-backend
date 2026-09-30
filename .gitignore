@@ -1,15 +1,19 @@
-# Credentials isolation
-credentials/
+# Credentials isolation (Protects Google Service Account JSON keys)
+credentials/*
+!credentials/*.example
 google_credentials.json
 
 # Local Python Environment & Caches
 venv/
+.venv/
 *.pyc
 __pycache__/
 .pytest_cache/
 
 # Databases
 db.sqlite3
+*.sqlite
+*.sqlite3
 
 # Media and Static files
 media/
@@ -20,7 +24,10 @@ staticfiles/
 .idea/
 .vscode/
 .DS_Store
+Thumbs.db
 
 # Environment variables & Key files
 .env
+.env.*
+!.env.example
 *.json.key
