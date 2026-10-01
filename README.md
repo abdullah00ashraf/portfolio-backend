@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Framework: Django 5.2](https://img.shields.io/badge/Django-5.2-darkgreen.svg)](https://www.djangoproject.com/)
 [![Database: SQLite / PostgreSQL](https://img.shields.io/badge/Database-SQLite%20%7C%20PostgreSQL-blue.svg)](https://docs.djangoproject.com/en/5.2/ref/databases/)
+[![Hugging Face Hub](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-abdullahashraf122-yellow.svg)](https://huggingface.co/abdullahashraf122)
 [![Admin: Django Unfold](https://img.shields.io/badge/Admin-Unfold%20Tailwind-purple.svg)](https://github.com/unfoldadmin/django-unfold)
 
 **Portfolio Backend (academic_portal)** is a high-security Django web service and data ledger powering the **Abdullah Ashraf Systems Portfolio**.
@@ -131,6 +132,18 @@ Access the custom Unfold admin dashboard at [http://localhost:8000/admin/](http:
 
 ---
 
-## 5. License
+## 5. 🤗 Hugging Face Hub Neural Models & Datasets Integration
+
+The backend ledger tracks, verifies, and catalogs production deep learning models and datasets published under [`abdullahashraf122`](https://huggingface.co/abdullahashraf122):
+
+* **[Sentinel-Mumbai PINN v1](https://huggingface.co/abdullahashraf122/sentinel-mumbai-pinn-v1)**: 20.38M parameter Physics-Informed Neural Network.
+* **[Sentinel-V7 Deep Flood LSTM](https://huggingface.co/abdullahashraf122/sentinel-v7-deep-flood-lstm)**: Dual Bi-LSTM flood forecasting model.
+* **[Aegis ManagerAI Agentic SFT Mixture](https://huggingface.co/datasets/abdullahashraf122/aegis-managerai-agentic-sft-mixture)**: Augmented ChatML dataset with internal `<think>` reasoning traces and JSON tool calls.
+* **[Alaska Arctic Hydrology Matrix](https://huggingface.co/datasets/abdullahashraf122/alaska-arctic-hydrology-matrix)**: 50,000-point spatiotemporal Parquet matrix.
+* **[Mumbai Flood Intelligence (2005–2023)](https://huggingface.co/datasets/abdullahashraf122/mumbai-salsette-flood-intelligence-2005-2023)**: 27.84 GB Parquet dataset (633M records).
+
+---
+
+## 6. License
 
 This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
